@@ -103,7 +103,8 @@ protocol Payment {
 
 ## 8. What is a Protocol?
 A protocol is basically a blueprint of rules.
-\nIt defines what methods, properties, or requirements a class, struct, or enum must have, but not how they work.
+
+It defines what methods, properties, or requirements a class, struct, or enum must have, but not how they work.
 
 ```swift
 protocol Flyable {
