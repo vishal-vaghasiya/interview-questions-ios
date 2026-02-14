@@ -11,7 +11,7 @@
 ### Answer:
 A class is a blueprint used to create objects.  
 It defines properties (variables) and methods (functions).  
-Class is a reference type, which means it is stored in heap memory.
+Class is a reference type and is stored in heap memory.
 
 ### Example:
 ```swift
@@ -428,7 +428,7 @@ Use weak/unowned to break cycle.
 
 ### Answer:
 Swift uses ARC for class types.  
-Structs and enums are value types and stored on stack.  
+Structs and enums are value types and are typically stored on the stack.  
 Memory is automatically released when reference count becomes zero.
 
 ### Easy Remember:
@@ -763,8 +763,18 @@ using `some` keyword.
 
 ### Example:
 ```swift
-func getView() -> some View {
-    Text("Hello")
+protocol Shape {
+    func draw()
+}
+
+struct Circle: Shape {
+    func draw() {
+        print("Drawing Circle")
+    }
+}
+
+func getShape() -> some Shape {
+    return Circle()
 }
 ```
 
@@ -1708,42 +1718,75 @@ Class → Heap
 
 ---
 
-## 82. What is async let?
+## 82. Mention the main features of Swift.
 
 ### Answer:
-`async let` allows running multiple asynchronous tasks in parallel.
+Main features of Swift:
 
-### Example:
-```swift
-async let first = fetchData()
-async let second = fetchData()
-
-let result = await (first, second)
-```
+- Safe and secure (type safety)
+- Automatic memory management (ARC)
+- Optionals to avoid null crashes
+- Powerful generics
+- Protocol-Oriented Programming
+- Fast performance
+- Modern concurrency (async/await)
 
 ### Easy Remember:
-async let = Run async tasks in parallel.
+Swift = Safe + Fast + Modern.
 
 ---
 
-## 83. What is TaskGroup?
+## 83. What is an Extension?
 
 ### Answer:
-TaskGroup allows creating and managing  
-multiple child tasks dynamically.
+Extension allows adding new functionality  
+to an existing class, struct, enum, or protocol  
+without modifying the original source code.
 
-Used for structured concurrency.
+Used to:
+- Add methods
+- Add computed properties
+- Conform to protocols
 
 ### Example:
 ```swift
-await withTaskGroup(of: Int.self) { group in
-    group.addTask { return 1 }
+extension String {
+    func greet() -> String {
+        return "Hello \(self)"
+    }
 }
 ```
 
 ### Easy Remember:
-TaskGroup = Manage multiple async tasks.
+Extension = Add new features without changing original code.
 
 ---
+
+## 84. What is Enum?
+
+### Answer:
+Enum (Enumeration) is a type  
+that defines a group of related values.
+
+Enums in Swift are powerful and can:
+- Have associated values
+- Have methods
+- Conform to protocols
+
+### Example:
+```swift
+enum Direction {
+    case north
+    case south
+    case east
+    case west
+}
+```
+
+### Easy Remember:
+Enum = Group of related cases.
+
+---
+
 
 

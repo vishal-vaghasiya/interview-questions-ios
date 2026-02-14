@@ -1,5 +1,3 @@
-
-
 # SwiftUI Interview Questions
 
 ---
@@ -575,5 +573,55 @@ Use UIViewRepresentable / UIViewControllerRepresentable.
 ### Easy Remember:
 SwiftUI for modern UI  
 UIKit for advanced control.
+
+---
+
+## 36. What is Concurrency in SwiftUI?
+
+### Answer:
+Concurrency in SwiftUI refers to performing asynchronous tasks  
+without blocking the main UI thread.
+
+SwiftUI uses Swift Concurrency features like:
+- async/await
+- Task
+- @MainActor
+
+It ensures smooth UI updates while background work is running.
+
+### Example:
+```swift
+.task {
+    await fetchData()
+}
+```
+
+### Easy Remember:
+SwiftUI Concurrency = Run background work without freezing UI.
+
+---
+
+## 37. What is Environment Property?
+
+### Answer:
+Environment Property allows a SwiftUI view  
+to access shared system or app-level values  
+without passing them manually through the view hierarchy.
+
+It uses the `@Environment` property wrapper.
+
+### Example:
+```swift
+@Environment(\.colorScheme) var colorScheme
+```
+
+Common environment values:
+- colorScheme
+- dismiss
+- locale
+- scenePhase
+
+### Easy Remember:
+@Environment = Access shared system values in SwiftUI.
 
 ---
