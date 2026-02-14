@@ -1619,7 +1619,7 @@ git cherry-pick <commit-hash>
 
 ---
 
-# Section 10 – Advanced Swift Concepts
+# Section 10 – Security & Storage
 
 ---
 
@@ -1789,6 +1789,8 @@ Enum = Group of related cases.
 
 ---
 
+### 🔐 Security Topics
+
 ## 85. What is Keychain and why is it used?
 
 ### Answer:
@@ -1931,7 +1933,13 @@ Do NOT store:
 - Tokens
 - Sensitive credentials
 
+
 ### Example (Privacy Permission in Info.plist):
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>This app needs camera access to scan plants.</string>
+```
 
 ---
 
@@ -2045,6 +2053,8 @@ try FileManager.default.setAttributes(
 Data Protection = File encryption based on device lock state.
 
 ---
+### 💾 Storage Topics
+
 ## 93. What is Persistent Storage in iOS and what are its types?
 
 ### Answer:
@@ -2086,5 +2096,259 @@ It is used to store user data permanently.
 
 ```swift
 UserDefaults.standard.set("Vishal", forKey: "username")
-
 let name = UserDefaults.standard.string(forKey: "username")
+```
+
+---
+
+# Section 11 – Advanced Swift & Networking
+
+---
+
+### 🚀 Advanced Swift & Concurrency
+
+## 94. What is the difference between Struct and Class?
+
+### Answer:
+
+| Feature | Struct | Class |
+|----------|--------|--------|
+| Type | Value Type | Reference Type |
+| Memory | Stack (typically) | Heap |
+| Inheritance | Not supported | Supported |
+| ARC | Not used | Used |
+| Mutability | Safer by default | More flexible |
+
+### Easy Remember:
+Struct = Value  
+Class = Reference
+
+---
+
+## 95. What is Access Control in Swift?
+
+### Answer:
+Access control defines how code is accessed from different parts of the app.
+
+Levels:
+- open
+- public
+- internal (default)
+- fileprivate
+- private
+
+### Example:
+```swift
+private var name: String
+```
+
+### Easy Remember:
+Access Control = Control visibility.
+
+---
+
+## 96. What is Error Handling in Swift?
+
+### Answer:
+Swift uses `do-try-catch` for error handling.
+
+Steps:
+- Define error type
+- Throw error
+- Catch error
+
+### Example:
+```swift
+enum LoginError: Error {
+    case invalidCredentials
+}
+
+func login() throws {
+    throw LoginError.invalidCredentials
+}
+
+do {
+    try login()
+} catch {
+    print(error)
+}
+```
+
+### Easy Remember:
+Error Handling = do-try-catch.
+
+---
+
+## 97. What is Dependency Injection?
+
+### Answer:
+Dependency Injection means providing dependencies from outside  
+instead of creating them inside the class.
+
+It improves testability and flexibility.
+
+### Example:
+```swift
+class NetworkService { }
+
+class UserViewModel {
+    let service: NetworkService
+    
+    init(service: NetworkService) {
+        self.service = service
+    }
+}
+```
+
+### Easy Remember:
+Inject dependency from outside.
+
+---
+
+## 98. What is Copy-on-Write (COW)?
+
+### Answer:
+Copy-on-Write means data is copied  
+only when it is modified.
+
+Used in:
+- Array
+- Dictionary
+- String
+
+### Example:
+```swift
+var arr1 = [1,2,3]
+var arr2 = arr1
+arr2.append(4)
+```
+
+### Easy Remember:
+COW = Copy only when changed.
+
+---
+
+## 99. What is Equatable and Hashable?
+
+### Answer:
+Equatable allows comparing two instances.  
+Hashable allows using objects in Set or Dictionary.
+
+### Example:
+```swift
+struct User: Equatable {
+    var id: Int
+}
+```
+
+### Easy Remember:
+Equatable = Compare  
+Hashable = Store in Set/Dictionary
+
+---
+
+### 🌐 Networking Topics
+
+## 100. What is URLSession?
+
+### Answer:
+URLSession is used to perform network requests.
+
+### Example:
+```swift
+URLSession.shared.dataTask(with: URL(string: "https://example.com")!) { data, response, error in
+    print("Response received")
+}.resume()
+```
+
+### Easy Remember:
+URLSession = Networking API.
+
+---
+
+## 101. What is Autoreleasepool?
+
+### Answer:
+Autoreleasepool releases temporary objects  
+at the end of a scope.
+
+Used in loops or memory-heavy operations.
+
+### Example:
+```swift
+for _ in 0..<1000 {
+    autoreleasepool {
+        print("Inside pool")
+    }
+}
+```
+
+### Easy Remember:
+Autoreleasepool = Release temp memory early.
+
+---
+
+## 102. What is Codable?
+
+### Answer:
+Codable is a protocol used  
+to encode and decode JSON data.
+
+It combines:
+- Encodable
+- Decodable
+
+### Example:
+```swift
+struct User: Codable {
+    var name: String
+}
+```
+
+### Easy Remember:
+Codable = Convert model ↔ JSON.
+
+---
+
+## 103. What is DispatchGroup?
+
+### Answer:
+DispatchGroup allows grouping multiple tasks  
+and notifying when all tasks complete.
+
+### Example:
+```swift
+let group = DispatchGroup()
+
+group.enter()
+DispatchQueue.global().async {
+    print("Task 1")
+    group.leave()
+}
+
+group.notify(queue: .main) {
+    print("All tasks completed")
+}
+```
+
+### Easy Remember:
+DispatchGroup = Wait for multiple tasks.
+
+---
+
+## 104. Difference between OperationQueue and GCD?
+
+### Answer:
+
+| GCD | OperationQueue |
+|-----|----------------|
+| Lightweight | Higher-level API |
+| Uses DispatchQueue | Uses Operation objects |
+| Less control | More control (cancel, dependencies) |
+| Simple tasks | Complex task management |
+
+### Easy Remember:
+GCD = Simple concurrency  
+OperationQueue = Advanced control
+
+---
