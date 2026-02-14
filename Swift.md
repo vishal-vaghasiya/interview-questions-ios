@@ -1762,6 +1762,7 @@ Extension = Add new features without changing original code.
 
 ---
 
+
 ## 84. What is Enum?
 
 ### Answer:
@@ -1788,5 +1789,302 @@ Enum = Group of related cases.
 
 ---
 
+## 85. What is Keychain and why is it used?
+
+### Answer:
+Keychain is a secure storage system provided by iOS  
+to store sensitive information in encrypted form.
+
+It is mainly used to store:
+- Passwords
+- Access Tokens
+- Refresh Tokens
+- API Keys
+- Encryption Keys
+
+Keychain data is encrypted and managed by iOS security system.
+
+Unlike UserDefaults, Keychain is secure  
+and should be used for confidential data.
+
+### Example:
+```swift
+import Security
+
+func saveToKeychain(key: String, value: String) {
+    let data = value.data(using: .utf8)!
+    
+    let query: [String: Any] = [
+        kSecClass as String: kSecClassGenericPassword,
+        kSecAttrAccount as String: key,
+        kSecValueData as String: data
+    ]
+    
+    SecItemAdd(query as CFDictionary, nil)
+}
+```
+
+### Easy Remember:
+Keychain = Secure encrypted storage for sensitive data.
+
+---
 
 
+## 86. Keychain vs UserDefaults (Interview Comparison)
+
+### Answer:
+
+| Feature | Keychain | UserDefaults |
+|----------|------------|--------------|
+| Security | Encrypted | Not encrypted |
+| Used For | Passwords, Tokens, API Keys | App settings, Preferences |
+| Data Type | Small sensitive data | Small non-sensitive data |
+| Survives Reinstall | Yes (by default) | No |
+| Access Control | Can use Face ID / Touch ID | No biometric protection |
+
+### When to Use Keychain:
+- Login tokens
+- Passwords
+- Secure credentials
+- Encryption keys
+
+### When to Use UserDefaults:
+- Theme preference
+- Login flag (isLoggedIn)
+- App settings
+- Simple small values
+
+### Example (UserDefaults):
+```swift
+UserDefaults.standard.set(true, forKey: "isLoggedIn")
+```
+
+---
+
+## 87. Can I store user password in iOS?
+
+### Answer:
+Yes, but only in **Keychain**.
+
+User password is sensitive data  
+and should NEVER be stored in:
+
+- UserDefaults
+- Plist
+- CoreData
+- Local files
+
+The correct and secure place to store user password  
+is the iOS **Keychain**, because:
+
+- It is encrypted
+- Managed by iOS security system
+- Can be protected with Face ID / Touch ID
+- More secure than normal storage
+
+### Important Best Practice:
+In real-world apps, we usually:
+- Do NOT store raw password
+- Store authentication token instead
+
+Password should only be stored  
+if absolutely required.
+
+### Example:
+```swift
+// Save password securely in Keychain
+saveToKeychain(key: "userPassword", value: "123456")
+```
+
+### Easy Remember:
+Password → Always Keychain  
+Never UserDefaults.
+
+---
+
+## 88. What type of data is stored in Info.plist?
+
+### Answer:
+Info.plist (Information Property List) stores  
+app configuration and metadata required by iOS.
+
+It is NOT used to store sensitive data.
+
+Info.plist contains:
+
+- App name
+- Bundle identifier
+- Version number
+- Build number
+- Required device capabilities
+- Privacy permission descriptions (Camera, Location, etc.)
+- App Transport Security settings
+- URL Schemes
+- Background modes
+
+### Important:
+Info.plist is readable and included inside the app bundle.  
+Do NOT store:
+
+- Passwords
+- API secrets
+- Tokens
+- Sensitive credentials
+
+### Example (Privacy Permission in Info.plist):
+
+---
+
+## 89. How to Secure API Keys in iOS?
+
+### Answer:
+API keys should NEVER be hardcoded directly inside the app  
+because the app bundle can be reverse engineered.
+
+Not secure places:
+- Hardcoded strings
+- Info.plist
+- UserDefaults
+- Public GitHub repositories
+
+### Best Practices:
+- Store sensitive keys on server
+- Call APIs through backend
+- Use short-lived tokens instead of static API keys
+- Use .xcconfig for environment separation (not for strong security)
+
+### Example (Wrong Way):
+```swift
+let apiKey = "MY_SECRET_KEY"
+```
+
+### Better Approach:
+- Keep API key on server
+- App calls backend
+- Backend communicates with third-party service
+
+### Easy Remember:
+Never trust client-side storage for secret API keys.
+
+---
+
+## 90. What happens to Keychain data after app uninstall?
+
+### Answer:
+By default, Keychain data survives app uninstall.
+
+This means:
+- If user deletes app
+- Reinstalls app
+- Keychain data may still exist
+
+This is useful for:
+- Auto-login
+- Persistent credentials
+
+To remove Keychain data manually:
+```swift
+SecItemDelete(query as CFDictionary)
+```
+
+### Easy Remember:
+Keychain survives uninstall (by default).
+
+---
+
+## 91. How to Protect Sensitive Data in iOS?
+
+### Answer:
+To protect sensitive data:
+
+- Use HTTPS (never HTTP)
+- Use Keychain for tokens and passwords
+- Avoid logging sensitive information
+- Avoid storing secrets in app bundle
+- Use SSL Pinning (advanced)
+- Use server-side validation
+
+### Example (Avoid Logging Tokens):
+```swift
+print("User logged in") // Correct
+// Avoid printing tokens in console
+```
+
+### Easy Remember:
+Protect data at:
+- Storage
+- Network
+- Logging
+- Server
+
+---
+
+## 92. What is Data Protection in iOS?
+
+### Answer:
+Data Protection encrypts files stored on device  
+based on the device lock state.
+
+iOS provides file protection levels such as:
+
+- NSFileProtectionComplete
+- NSFileProtectionCompleteUntilFirstUserAuthentication
+- NSFileProtectionNone
+
+These control when files are accessible.
+
+### Example:
+```swift
+try FileManager.default.setAttributes(
+    [.protectionKey: FileProtectionType.complete],
+    ofItemAtPath: filePath
+)
+```
+
+### Easy Remember:
+Data Protection = File encryption based on device lock state.
+
+---
+## 93. What is Persistent Storage in iOS and what are its types?
+
+### Answer:
+Persistent storage refers to saving data in a way  
+that it remains available even after:
+
+- The app is closed
+- The device is restarted
+
+It is used to store user data permanently.
+
+---
+
+### Common Persistent Storage Options in iOS:
+
+1. **UserDefaults**
+   - Used for small non-sensitive data
+   - Example: Login flag, theme preference
+
+2. **Keychain**
+   - Used for secure sensitive data
+   - Example: Passwords, access tokens
+
+3. **CoreData**
+   - Used for structured and relational data
+   - Example: Notes app, task manager
+
+4. **FileManager**
+   - Used for storing files (images, PDFs, JSON)
+   - Example: Downloaded documents
+
+5. **SQLite**
+   - Lightweight local database
+   - Used in large structured data apps
+
+---
+
+### Example 1 – UserDefaults
+
+```swift
+UserDefaults.standard.set("Vishal", forKey: "username")
+
+let name = UserDefaults.standard.string(forKey: "username")
