@@ -1,175 +1,183 @@
-# interview-questions-ios
 
-![Platform](https://img.shields.io/badge/platform-iOS-blue)
-![Language](https://img.shields.io/badge/language-Swift-orange)
-![SwiftUI](https://img.shields.io/badge/SwiftUI-supported-green)
-![UIKit](https://img.shields.io/badge/UIKit-supported-blueviolet)
-![Objective--C](https://img.shields.io/badge/Objective--C-supported-lightgrey)
-![Level](https://img.shields.io/badge/Level-Senior%20iOS%20Developer-red)
-![Status](https://img.shields.io/badge/Status-Interview%20Ready-success)
 
-A curated collection of **iOS interview questions and quick revision notes**  
-covering **Swift, UIKit, SwiftUI, Objective-C, OOPS, Concurrency, Memory Management, Architecture, and System Design**.
+# iOS Interview Preparation – Swift & SwiftUI 🚀
 
-Designed for **fast revision**, **easy understanding**, and **senior-level interview preparation**.
+This repository contains a structured and practical collection of  
+**iOS Interview Questions and Answers** focused on:
 
----
-
-## 👨‍💻 About
-
-**Vishal Vaghasiya**  
-Senior iOS Developer with **8.5+ years of experience**
-
-- Swift (6+ years)
-- Objective-C (1+ year)
-- SwiftUI (1.5+ years)
-- App Architecture & System Design
-- Performance Optimization
+- Swift (Core Language + OOPS)
 - Memory Management
-- Modern Concurrency (async/await, actors)
+- Concurrency
+- UIKit
+- Architecture Patterns
+- App Distribution
+- Git
+- SwiftUI (Basic to Advanced)
+
+The content is written in:
+- ✅ Simple and easy language  
+- ✅ Short & interview-friendly explanations  
+- ✅ With small examples  
+- ✅ Beginner → Advanced flow  
 
 ---
 
-## 📚 Table of Contents
+# 📂 Repository Structure
 
-- [Repository Structure](#-repository-structure)
-- [Topics Covered](#-topics-covered)
-  - [Swift & OOPS](#swift--oops)
-  - [UIKit](#uikit)
-  - [SwiftUI](#swiftui)
-  - [Advanced SwiftUI](#advanced-swiftui)
-  - [Objective-C](#objective-c)
-  - [Concurrency](#concurrency)
-  - [Memory Management](#memory-management)
-  - [Architecture](#architecture)
-  - [System Design](#system-design)
-- [Who Is This For?](#-who-is-this-for)
-- [How to Use](#-how-to-use)
-- [License](#-license)
+## 1️⃣ Swift.md
 
----
+Covers complete Swift & UIKit interview topics:
 
-## 📂 Repository Structure
+### 🔹 OOPS Concepts
+- Class & Object
+- Abstraction
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Method Overloading & Overriding
+- Protocol & Protocol-Oriented Programming
 
-```
-interview-questions-ios/
-│
-├── Swift-OOPS.md
-├── Swift-UIKit.md
-├── SwiftUI.md
-├── Advanced-SwiftUI.md
-├── Swift-Concurrency.md
-├── Memory-Management.md
-├── Objective-C.md
-├── Architecture-MVVM-Clean.md
-├── System-Design-iOS.md
-```
-
----
-
-## 📘 Topics Covered
-
-### Swift & OOPS
-- OOPS concepts
-- ARC
-- Value vs Reference Types
-- Retain Cycles
-- SOLID principles
-- Dependency Injection
-
-### UIKit
-- MVC / MVVM
-- Core Data
-- App & ViewController Lifecycle
-- Delegation, KVO, NotificationCenter
-- GCD & OperationQueue
-- Auto Layout
-- Code Signing
-- TestFlight
-- In-App Purchases
-
-### SwiftUI
-- Declarative UI
-- `@State`, `@Binding`
-- `@ObservedObject`, `@StateObject`
-- `@EnvironmentObject`
-- NavigationStack
-- Task & async/await
-
-### Advanced SwiftUI
-- Rendering & diffing system
-- View identity & lifecycle
-- PreferenceKey
-- MatchedGeometryEffect
-- Performance optimization
-- AnyView pitfalls
-- Lazy containers
-- Accessibility
-- Testing SwiftUI
-
-### Objective-C
-- Runtime concepts
-- `@interface` / `@implementation`
-- Properties & memory attributes
-- ARC & manual memory
-- Categories & Extensions
-- KVC / KVO
-- Bridging with Swift
-
-### Concurrency
-- GCD
-- async / await
-- Task & TaskGroup
-- Actors
-- @MainActor
-- Race conditions & deadlocks
-
-### Memory Management
+### 🔹 Memory Management
 - ARC
 - Strong / Weak / Unowned
-- Retain cycles
-- Closures capture list
-- Heap vs Stack
-- Copy-on-Write
-- Instruments & Memory Graph
+- Retain Cycle
+- Stack vs Heap
+- Value vs Reference Types
 
-### Architecture
-- MVC vs MVVM vs Clean Architecture
-- Repository & UseCase
-- Scalability & testability
-- SwiftUI-friendly architecture
+### 🔹 Core Swift Concepts
+- Stored & Computed Properties
+- Lazy Properties
+- Property Observers
+- Property Wrappers
+- Optional Binding
+- Generics
+- Opaque Types
+- Closures
+- Functional methods (map, filter, reduce, etc.)
 
-### System Design
-- Large-scale iOS app design
-- Networking layer
-- Caching & offline-first
-- Pagination
-- Image loading system
-- Modularization
-- Dependency Injection
-- Security considerations
-- Real interview design questions
+### 🔹 Concurrency
+- Synchronous vs Asynchronous
+- GCD
+- async/await
+- Task
+- async let
+- TaskGroup
+- Actor
+- Continuations
+- AsyncSequence
+
+### 🔹 Architecture Patterns
+- MVC
+- MVVM
+- MVP
+- VIPER
+- Singleton
+- Decorator Pattern
+- SOLID Principles
+
+### 🔹 UIKit & Lifecycle
+- iOS App States
+- Application Lifecycle
+- UIViewController Lifecycle
+- Delegate & Delegation
+- KVO
+- NotificationCenter
+- CoreData
+
+### 🔹 App Distribution
+- Code Signing
+- Developer Account vs Enterprise Account
+- TestFlight
+- In-App Purchases
+- App Store Upload Process
+
+### 🔹 Git
+- Cherry-pick
 
 ---
 
-## 🎯 Who Is This For?
+## 2️⃣ SwiftUI.md
+
+Focused purely on SwiftUI interview preparation.
+
+### 🔹 SwiftUI Basics
+- Declarative UI
+- @State
+- @Binding
+- @StateObject
+- @ObservedObject
+- @EnvironmentObject
+- @Published
+- @ViewBuilder
+
+### 🔹 Lifecycle
+- SwiftUI App Lifecycle
+- .onAppear()
+- .onDisappear()
+- .task
+
+### 🔹 Layout & Navigation
+- VStack, HStack, ZStack
+- NavigationStack
+- GeometryReader
+- LazyVStack / LazyHStack
+- List
+
+### 🔹 Advanced SwiftUI
+- some View
+- ViewModifier
+- Combine with SwiftUI
+- @AppStorage
+- UIKit vs SwiftUI comparison
+
+### 🔹 Real-World Tricky Questions
+- View reload issues
+- StateObject vs ObservedObject mistakes
+- Infinite view updates
+- View identity problems
+- ForEach crashes
+- Performance optimization
+- UIKit integration inside SwiftUI
+
+---
+
+# 🎯 Who Is This For?
 
 - iOS Developers preparing for interviews
-- Senior / Lead iOS Engineers
-- Developers switching to SwiftUI
-- Anyone who wants **clean, interview-ready explanations**
+- Freshers learning Swift fundamentals
+- Mid-level developers revising architecture
+- Senior developers brushing up concurrency & design principles
 
 ---
 
-## 🚀 How to Use
+# 📈 Interview Preparation Strategy
 
-- Quick revision before interviews
-- Daily concept refresh
-- Reference during real projects
-- Share with other iOS developers
+1. Start with **OOPS + Memory Management**
+2. Move to **Core Swift & Functional Programming**
+3. Practice **Concurrency deeply**
+4. Revise **Architecture Patterns**
+5. Understand **SwiftUI state management properly**
+6. Go through **Real-world tricky questions**
 
 ---
 
-## 📌 License
+# 🧠 Goal of This Repository
 
-Free to use for **learning and interview preparation**.
+To provide:
+
+- Clear understanding  
+- Strong conceptual foundation  
+- Interview-ready explanations  
+- Easy-to-revise content  
+
+---
+
+If you find this helpful, you can:
+
+- ⭐ Star the repository  
+- 📌 Fork for personal notes  
+- 💡 Add your own interview experiences  
+
+---
+
+Happy Coding & Best of Luck for Your iOS Interviews! 🚀
