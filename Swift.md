@@ -541,6 +541,14 @@ struct Rectangle {
         return width * height
     }
 }
+
+let rect = Rectangle(width: 5, height: 4)
+print("Area:", rect.area)
+```
+
+Output:
+```swift
+Area: 20.0
 ```
 
 ### Easy Remember:
@@ -727,7 +735,17 @@ func increase(value: inout Int) {
 }
 
 var num = 5
+print("Before:", num)
+
 increase(value: &num)
+
+print("After:", num)
+```
+
+Output:
+```swift
+Before: 5
+After: 6
 ```
 
 ### Easy Remember:
@@ -748,6 +766,21 @@ func swapValues<T>(_ a: inout T, _ b: inout T) {
     a = b
     b = temp
 }
+
+var first = 10
+var second = 20
+
+print("Before Swap:", first, second)
+
+swapValues(&first, &second)
+
+print("After Swap:", first, second)
+```
+
+Output:
+```swift
+Before Swap: 10 20
+After Swap: 20 10
 ```
 
 ### Easy Remember:
@@ -1284,15 +1317,56 @@ class NetworkManager {
 }
 ```
 
-### Easy Remember:
+# Easy Remember:
 Singleton = Only one shared instance.
+
+---
+
+## 61. What is Coordinator Pattern?
+
+### Answer:
+Coordinator Pattern is an architectural pattern  
+used to manage navigation logic outside of ViewControllers.
+
+Instead of handling navigation inside ViewController,  
+a separate Coordinator object controls screen flow.
+
+It improves:
+- Separation of concerns
+- Testability
+- Reusability
+- Cleaner ViewControllers
+
+### Example:
+```swift
+protocol Coordinator {
+    func start()
+}
+
+class AppCoordinator: Coordinator {
+    
+    var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
+        let viewController = UIViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+}
+```
+
+### Easy Remember:
+Coordinator = Handles navigation outside ViewController.
 
 ---
 # Section 7 – UIKit & App Lifecycle
 
 ---
 
-## 61. Explain the iOS Application Lifecycle.
+## 62. Explain the iOS Application Lifecycle.
 
 ### Answer:
 The iOS Application Lifecycle describes  
@@ -1312,7 +1386,7 @@ App Lifecycle = App state changes from launch to close.
 
 ---
 
-## 62. What are iOS App States?
+## 63. What are iOS App States?
 
 ### Answer:
 
@@ -1341,7 +1415,7 @@ NR → I → A → B → S
 
 ---
 
-## 63. What is UIViewController Lifecycle?
+## 64. What is UIViewController Lifecycle?
 
 ### Answer:
 UIViewController lifecycle methods are called  
@@ -1377,7 +1451,7 @@ Load → Will Appear → Did Appear → Will Disappear → Did Disappear
 
 ---
 
-## 64. What is Delegate?
+## 65. What is Delegate?
 
 ### Answer:
 Delegate is a design pattern  
@@ -1399,7 +1473,7 @@ Delegate = One object informs another.
 
 ---
 
-## 65. What is Delegation?
+## 66. What is Delegation?
 
 ### Answer:
 Delegation is the process  
@@ -1417,7 +1491,7 @@ Delegation = Assign task using protocol.
 
 ---
 
-## 66. What is KVO?
+## 67. What is KVO?
 
 ### Answer:
 KVO (Key-Value Observing)  
@@ -1433,7 +1507,7 @@ KVO = Observe property changes automatically.
 
 ---
 
-## 67. What is NotificationCenter?
+## 68. What is NotificationCenter?
 
 ### Answer:
 NotificationCenter is used  
@@ -1457,7 +1531,7 @@ NotificationCenter = Broadcast message to many listeners.
 
 ---
 
-## 68. What is CoreData?
+## 69. What is CoreData?
 
 ### Answer:
 CoreData is a framework  
@@ -1478,11 +1552,58 @@ CoreData = Local storage + object management system.
 
 ---
 
+## 70. What is SwiftData?
+
+### Answer:
+SwiftData is a modern data persistence framework introduced by Apple in iOS 17.
+
+It is built on top of CoreData but designed specifically for Swift and SwiftUI.
+
+SwiftData removes boilerplate code and makes data storage simpler and more developer-friendly.
+
+### Example:
+```swift
+@Model
+class User {
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+```
+
+### Easy Remember:
+SwiftData = Modern Swift-friendly CoreData.
+
+---
+
+## 71. Difference Between CoreData vs SwiftData
+
+### Answer:
+
+| Feature | CoreData | SwiftData |
+|----------|------------|------------|
+| Introduced | 2005 | 2023 (iOS 17) |
+| Data Model | .xcdatamodeld file | @Model class |
+| Boilerplate | More | Less |
+| SwiftUI Integration | Manual setup | Automatic |
+| Language Style | Objective-C style | Pure Swift |
+
+### Easy Remember:
+CoreData = Traditional  
+SwiftData = Modern & Simple
+
+---
+---
+
 # Section 8 – App Distribution & Accounts
 
 ---
 
-## 69. What is Code Signing?
+## 72. What is Code Signing?
 
 ### Answer:
 Code Signing ensures that the app is created by a trusted developer  
@@ -1500,7 +1621,7 @@ Code Signing = Verify developer + secure app.
 
 ---
 
-## 70. What is an Apple Developer Account?
+## 73. What is an Apple Developer Account?
 
 ### Answer:
 Apple Developer Account allows developers  
@@ -1519,7 +1640,7 @@ Developer Account = Publish apps on App Store.
 
 ---
 
-## 71. What is an Enterprise Account?
+## 74. What is an Enterprise Account?
 
 ### Answer:
 Enterprise Account is used by companies  
@@ -1535,7 +1656,7 @@ Enterprise = Internal company apps only.
 
 ---
 
-## 72. What is TestFlight?
+## 75. What is TestFlight?
 
 ### Answer:
 TestFlight is Apple’s official tool  
@@ -1549,7 +1670,7 @@ TestFlight = Beta testing platform.
 
 ---
 
-## 73. How many testers are allowed in TestFlight?
+## 76. How many testers are allowed in TestFlight?
 
 ### Answer:
 TestFlight allows:
@@ -1564,7 +1685,7 @@ Each build is valid for 90 days.
 
 ---
 
-## 74. How many types of In-App Purchases (IAP) are there?
+## 77. How many types of In-App Purchases (IAP) are there?
 
 ### Answer:
 There are 4 types of IAP:
@@ -1579,7 +1700,7 @@ Consumable, Non-Consumable, Subscriptions (Auto + Non-auto).
 
 ---
 
-## 75. How to Upload an App to the App Store?
+## 78. How to Upload an App to the App Store?
 
 ### Answer:
 Steps to upload app:
@@ -1602,7 +1723,7 @@ Archive → Upload → Submit → Review → Live
 
 ---
 
-## 76. What is cherry-pick in Git?
+## 79. What is cherry-pick in Git?
 
 ### Answer:
 `git cherry-pick` is a Git command  
@@ -1623,7 +1744,7 @@ git cherry-pick <commit-hash>
 
 ---
 
-## 77. What are SOLID Principles?
+## 80. What are SOLID Principles?
 
 ### Answer:
 SOLID is a set of 5 design principles:
@@ -1641,7 +1762,7 @@ SOLID = Rules for clean architecture.
 
 ---
 
-## 78. What is the difference between try, try?, and try!?
+## 81. What is the difference between try, try?, and try!?
 
 ### Answer:
 
@@ -1668,7 +1789,7 @@ try! = crash if fails
 
 ---
 
-## 79. What is Combine?
+## 82. What is Combine?
 
 ### Answer:
 Combine is a framework by Apple  
@@ -1684,7 +1805,44 @@ Combine = Reactive programming framework.
 
 ---
 
-## 80. What is Data Binding?
+### Example:
+
+```swift
+import Combine
+
+class ViewModel {
+    var cancellables = Set<AnyCancellable>()
+    @Published var name: String = ""
+    
+    init() {
+        $name
+            .sink { newValue in
+                print("Name updated to:", newValue)
+            }
+            .store(in: &cancellables)
+    }
+}
+
+let vm = ViewModel()
+vm.name = "Vishal"
+```
+
+Output:
+```swift
+Name updated to: Vishal
+```
+
+### Explanation:
+- `@Published` creates a publisher.
+- `$name` observes changes.
+- `sink` receives updated values.
+- `AnyCancellable` stores the subscription.
+
+---
+
+---
+
+## 83. What is Data Binding?
 
 ### Answer:
 Data Binding connects UI with data source  
@@ -1698,7 +1856,7 @@ Data Binding = Auto UI update when data changes.
 
 ---
 
-## 81. Explain Stack vs Heap Memory.
+## 84. Explain Stack vs Heap Memory.
 
 ### Answer:
 
@@ -1718,7 +1876,7 @@ Class → Heap
 
 ---
 
-## 82. Mention the main features of Swift.
+## 85. Mention the main features of Swift.
 
 ### Answer:
 Main features of Swift:
@@ -1736,7 +1894,7 @@ Swift = Safe + Fast + Modern.
 
 ---
 
-## 83. What is an Extension?
+## 86. What is an Extension?
 
 ### Answer:
 Extension allows adding new functionality  
@@ -1763,7 +1921,7 @@ Extension = Add new features without changing original code.
 ---
 
 
-## 84. What is Enum?
+## 87. What is Enum?
 
 ### Answer:
 Enum (Enumeration) is a type  
@@ -1791,7 +1949,7 @@ Enum = Group of related cases.
 
 ### 🔐 Security Topics
 
-## 85. What is Keychain and why is it used?
+## 88. What is Keychain and why is it used?
 
 ### Answer:
 Keychain is a secure storage system provided by iOS  
@@ -1803,36 +1961,95 @@ It is mainly used to store:
 - Refresh Tokens
 - API Keys
 - Encryption Keys
+- Biometric-protected credentials
 
-Keychain data is encrypted and managed by iOS security system.
+Keychain data is encrypted and managed by the iOS security system.
 
 Unlike UserDefaults, Keychain is secure  
-and should be used for confidential data.
+and should always be used for confidential data.
 
-### Example:
+---
+
+## Steps to Store Data in Keychain:
+
+1. Convert value into `Data`
+2. Create a query dictionary
+3. Specify keychain class (kSecClassGenericPassword)
+4. Add attributes (account, service)
+5. Call `SecItemAdd`
+6. Handle status result
+
+---
+
+### Example – Save Data to Keychain:
+
 ```swift
 import Security
 
 func saveToKeychain(key: String, value: String) {
+    
     let data = value.data(using: .utf8)!
     
+    // Remove existing item (if any)
+    let deleteQuery: [String: Any] = [
+        kSecClass as String: kSecClassGenericPassword,
+        kSecAttrAccount as String: key
+    ]
+    SecItemDelete(deleteQuery as CFDictionary)
+    
+    // Add new item
     let query: [String: Any] = [
         kSecClass as String: kSecClassGenericPassword,
         kSecAttrAccount as String: key,
         kSecValueData as String: data
     ]
     
-    SecItemAdd(query as CFDictionary, nil)
+    let status = SecItemAdd(query as CFDictionary, nil)
+    
+    if status == errSecSuccess {
+        print("Saved successfully")
+    } else {
+        print("Error saving:", status)
+    }
 }
 ```
 
+---
+
+### Example – Read Data from Keychain:
+
+```swift
+func readFromKeychain(key: String) -> String? {
+    
+    let query: [String: Any] = [
+        kSecClass as String: kSecClassGenericPassword,
+        kSecAttrAccount as String: key,
+        kSecReturnData as String: true,
+        kSecMatchLimit as String: kSecMatchLimitOne
+    ]
+    
+    var dataTypeRef: AnyObject?
+    let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+    
+    if status == errSecSuccess,
+       let data = dataTypeRef as? Data,
+       let value = String(data: data, encoding: .utf8) {
+        return value
+    }
+    
+    return nil
+}
+```
+
+---
+
 ### Easy Remember:
-Keychain = Secure encrypted storage for sensitive data.
+Keychain = Encrypted storage for passwords & tokens.
 
 ---
 
 
-## 86. Keychain vs UserDefaults (Interview Comparison)
+## 89. Keychain vs UserDefaults (Interview Comparison)
 
 ### Answer:
 
@@ -1863,7 +2080,7 @@ UserDefaults.standard.set(true, forKey: "isLoggedIn")
 
 ---
 
-## 87. Can I store user password in iOS?
+## 90. Can I store user password in iOS?
 
 ### Answer:
 Yes, but only in **Keychain**.
@@ -1904,7 +2121,7 @@ Never UserDefaults.
 
 ---
 
-## 88. What type of data is stored in Info.plist?
+## 91. What type of data is stored in Info.plist?
 
 ### Answer:
 Info.plist (Information Property List) stores  
@@ -1943,7 +2160,7 @@ Do NOT store:
 
 ---
 
-## 89. How to Secure API Keys in iOS?
+## 92. How to Secure API Keys in iOS?
 
 ### Answer:
 API keys should NEVER be hardcoded directly inside the app  
@@ -1976,7 +2193,7 @@ Never trust client-side storage for secret API keys.
 
 ---
 
-## 90. What happens to Keychain data after app uninstall?
+## 93. What happens to Keychain data after app uninstall?
 
 ### Answer:
 By default, Keychain data survives app uninstall.
@@ -2000,7 +2217,7 @@ Keychain survives uninstall (by default).
 
 ---
 
-## 91. How to Protect Sensitive Data in iOS?
+## 94. How to Protect Sensitive Data in iOS?
 
 ### Answer:
 To protect sensitive data:
@@ -2027,7 +2244,7 @@ Protect data at:
 
 ---
 
-## 92. What is Data Protection in iOS?
+## 95. What is Data Protection in iOS?
 
 ### Answer:
 Data Protection encrypts files stored on device  
@@ -2055,7 +2272,7 @@ Data Protection = File encryption based on device lock state.
 ---
 ### 💾 Storage Topics
 
-## 93. What is Persistent Storage in iOS and what are its types?
+## 96. What is Persistent Storage in iOS and what are its types?
 
 ### Answer:
 Persistent storage refers to saving data in a way  
@@ -2107,7 +2324,7 @@ let name = UserDefaults.standard.string(forKey: "username")
 
 ### 🚀 Advanced Swift & Concurrency
 
-## 94. What is the difference between Struct and Class?
+## 97. What is the difference between Struct and Class?
 
 ### Answer:
 
@@ -2125,7 +2342,7 @@ Class = Reference
 
 ---
 
-## 95. What is Access Control in Swift?
+## 98. What is Access Control in Swift?
 
 ### Answer:
 Access control defines how code is accessed from different parts of the app.
@@ -2147,7 +2364,7 @@ Access Control = Control visibility.
 
 ---
 
-## 96. What is Error Handling in Swift?
+## 99. What is Error Handling in Swift?
 
 ### Answer:
 Swift uses `do-try-catch` for error handling.
@@ -2179,7 +2396,7 @@ Error Handling = do-try-catch.
 
 ---
 
-## 97. What is Dependency Injection?
+## 100. What is Dependency Injection?
 
 ### Answer:
 Dependency Injection means providing dependencies from outside  
@@ -2205,7 +2422,7 @@ Inject dependency from outside.
 
 ---
 
-## 98. What is Copy-on-Write (COW)?
+## 101. What is Copy-on-Write (COW)?
 
 ### Answer:
 Copy-on-Write means data is copied  
@@ -2228,7 +2445,7 @@ COW = Copy only when changed.
 
 ---
 
-## 99. What is Equatable and Hashable?
+## 102. What is Equatable and Hashable?
 
 ### Answer:
 Equatable allows comparing two instances.  
@@ -2249,7 +2466,7 @@ Hashable = Store in Set/Dictionary
 
 ### 🌐 Networking Topics
 
-## 100. What is URLSession?
+## 103. What is URLSession?
 
 ### Answer:
 URLSession is used to perform network requests.
@@ -2266,7 +2483,7 @@ URLSession = Networking API.
 
 ---
 
-## 101. What is Autoreleasepool?
+## 104. What is Autoreleasepool?
 
 ### Answer:
 Autoreleasepool releases temporary objects  
@@ -2288,7 +2505,7 @@ Autoreleasepool = Release temp memory early.
 
 ---
 
-## 102. What is Codable?
+## 105. What is Codable?
 
 ### Answer:
 Codable is a protocol used  
@@ -2310,7 +2527,7 @@ Codable = Convert model ↔ JSON.
 
 ---
 
-## 103. What is DispatchGroup?
+## 106. What is DispatchGroup?
 
 ### Answer:
 DispatchGroup allows grouping multiple tasks  
@@ -2336,7 +2553,7 @@ DispatchGroup = Wait for multiple tasks.
 
 ---
 
-## 104. Difference between OperationQueue and GCD?
+## 107. Difference between OperationQueue and GCD?
 
 ### Answer:
 
