@@ -47,7 +47,7 @@ Declarative = Describe UI, system updates it.
 @State is a property wrapper  
 used to store local mutable state in a View.
 
-When value changes, UI automatically updates.
+When the value changes, the UI automatically updates.
 
 ### Example:
 ```swift
@@ -62,10 +62,9 @@ When value changes, UI automatically updates.
 ## 4. What is @Binding?
 
 ### Answer:
-@Binding is used to pass a reference  
-of a state variable to another view.
+@Binding is used to pass a reference to a state variable to another view.
 
-It allows child view to modify parent data.
+It allows the child to view and modify parent data.
 
 ### Example:
 ```swift
@@ -80,10 +79,38 @@ It allows child view to modify parent data.
 ## 5. What is @StateObject?
 
 ### Answer:
-@StateObject is used to create  
-and own a reference-type object in a view.
+@StateObject is used to create and own a reference-type object in a view.
 
-Used when view creates the ViewModel.
+Used when the view creates the ViewModel.
+
+### Example:
+```swift
+import SwiftUI
+
+class UserViewModel: ObservableObject {
+
+    @Published var name = "Vishal"
+
+    func updateName() {
+        name = "Rahul"
+    }
+}
+
+struct ContentView: View {
+
+    @StateObject var viewModel = UserViewModel()
+
+    var body: some View {
+        VStack {
+            Text(viewModel.name)
+
+            Button("Update") {
+                viewModel.updateName()
+            }
+        }
+    }
+}
+```
 
 ### Easy Remember:
 @StateObject = View owns object.
@@ -93,10 +120,51 @@ Used when view creates the ViewModel.
 ## 6. What is @ObservedObject?
 
 ### Answer:
-@ObservedObject is used to observe  
-an external object created elsewhere.
+@ObservedObject is used to observe an external object created elsewhere.
 
 View does not own the object.
+
+### Example:
+```swift
+import SwiftUI
+
+class UserViewModel: ObservableObject {
+
+    @Published var name = "Vishal"
+
+    func updateName() {
+        name = "Rahul"
+    }
+}
+
+
+// Parent View
+struct HomeView: View {
+
+    @StateObject var viewModel = UserViewModel()
+
+    var body: some View {
+        ProfileView(viewModel: viewModel)
+    }
+}
+
+
+// Child View
+struct ProfileView: View {
+
+    @ObservedObject var viewModel: UserViewModel
+
+    var body: some View {
+        VStack {
+            Text(viewModel.name)
+
+            Button("Update") {
+                viewModel.updateName()
+            }
+        }
+    }
+}
+```
 
 ### Easy Remember:
 @ObservedObject = View observes object.
@@ -106,10 +174,9 @@ View does not own the object.
 ## 7. What is @EnvironmentObject?
 
 ### Answer:
-@EnvironmentObject shares data  
-across multiple views globally.
+@EnvironmentObject shares data across multiple views globally.
 
-It avoids passing data manually through hierarchy.
+It avoids passing data manually through the hierarchy.
 
 ### Easy Remember:
 @EnvironmentObject = Shared global object.
@@ -119,8 +186,7 @@ It avoids passing data manually through hierarchy.
 ## 8. What is @Published?
 
 ### Answer:
-@Published is used inside ObservableObject  
-to notify SwiftUI when value changes.
+@Published is used inside ObservableObject to notify SwiftUI when the value changes.
 
 ### Example:
 ```swift
@@ -137,9 +203,7 @@ class ViewModel: ObservableObject {
 ## 9. What is @ViewBuilder?
 
 ### Answer:
-@ViewBuilder allows returning  
-multiple views from a function  
-without explicitly wrapping them.
+@ViewBuilder allows returning multiple views from a function without explicitly wrapping them.
 
 ### Easy Remember:
 @ViewBuilder = Build multiple views.
@@ -149,8 +213,7 @@ without explicitly wrapping them.
 ## 10. What is Data Binding in SwiftUI?
 
 ### Answer:
-Data binding automatically updates UI  
-when underlying data changes.
+Data binding automatically updates the UI when the underlying data changes.
 
 SwiftUI provides:
 - @State
@@ -167,7 +230,7 @@ Data Binding = UI auto updates.
 
 ---
 
-## 11. What is SwiftUI App Lifecycle?
+## 11. What is the SwiftUI App Lifecycle?
 
 ### Answer:
 SwiftUI uses the `@main` App protocol  
@@ -186,15 +249,14 @@ struct MyApp: App {
 ```
 
 ### Easy Remember:
-SwiftUI Lifecycle = App protocol based.
+SwiftUI Lifecycle = App protocol-based.
 
 ---
 
 ## 12. What is .onAppear()?
 
 ### Answer:
-.onAppear() runs code  
-when view appears on screen.
+.onAppear() runs code when the view appears on the screen.
 
 ### Example:
 ```swift
@@ -204,26 +266,24 @@ when view appears on screen.
 ```
 
 ### Easy Remember:
-onAppear = When view shows.
+onAppear = When the view shows.
 
 ---
 
 ## 13. What is .onDisappear()?
 
 ### Answer:
-.onDisappear() runs code  
-when view disappears.
+.onDisappear() runs code when the view disappears.
 
 ### Easy Remember:
-onDisappear = When view hides.
+onDisappear = When the view hides.
 
 ---
 
-## 14. What is Task in SwiftUI?
+## 14. What is a task in SwiftUI?
 
 ### Answer:
-Task is used to perform  
-asynchronous work inside a View.
+Task is used to perform asynchronous work inside a View.
 
 ### Example:
 ```swift
@@ -241,7 +301,7 @@ asynchronous work inside a View.
 
 ---
 
-## 15. What is VStack, HStack, and ZStack?
+## 15. What are VStack, HStack, and ZStack?
 
 ### Answer:
 - VStack → Vertical layout
@@ -258,8 +318,7 @@ Z = Overlap
 ## 16. What is NavigationStack?
 
 ### Answer:
-NavigationStack is used  
-for navigation between views.
+NavigationStack is used for navigation between views.
 
 ### Example:
 ```swift
@@ -276,8 +335,7 @@ NavigationStack = Push navigation.
 ## 17. What is GeometryReader?
 
 ### Answer:
-GeometryReader provides  
-size and position information of a view.
+GeometryReader provides size and position information of a view.
 
 Used for responsive layouts.
 
@@ -289,8 +347,7 @@ GeometryReader = Access layout size.
 ## 18. What is LazyVStack / LazyHStack?
 
 ### Answer:
-Lazy stacks load views  
-only when needed.
+Lazy stacks load views only when needed.
 
 Improves performance for large lists.
 
@@ -299,7 +356,7 @@ Lazy = Load when needed.
 
 ---
 
-## 19. What is List in SwiftUI?
+## 19. What is a list in SwiftUI?
 
 ### Answer:
 List displays scrollable data.
@@ -324,15 +381,14 @@ It hides the exact type
 but still conforms to View.
 
 ### Easy Remember:
-some View = Hide real view type.
+Some View = Hide real view type.
 
 ---
 
 ## 21. What is View Modifier?
 
 ### Answer:
-View Modifier changes appearance  
-or behavior of a view.
+View Modifier changes the appearance or behavior of a view.
 
 ### Example:
 ```swift
@@ -349,11 +405,9 @@ Modifier = Change view style.
 ## 22. What is Combine in SwiftUI?
 
 ### Answer:
-SwiftUI works closely with Combine  
-to handle reactive data updates.
+SwiftUI works closely with Combine to handle reactive data updates.
 
-ObservableObject and @Published  
-are based on Combine.
+ObservableObject and @Published are based on Combine.
 
 ### Easy Remember:
 Combine = Reactive engine for SwiftUI.
@@ -363,8 +417,7 @@ Combine = Reactive engine for SwiftUI.
 ## 23. What is @AppStorage?
 
 ### Answer:
-@AppStorage stores small values  
-in UserDefaults.
+@AppStorage stores small values in UserDefaults.
 
 ### Example:
 ```swift
@@ -417,8 +470,7 @@ SwiftUI = Declarative
 ## 26. Why does my SwiftUI View reload multiple times?
 
 ### Answer:
-SwiftUI Views are value types (structs).  
-They are recreated whenever state changes.
+SwiftUI Views are value types (structs). They are recreated whenever the state changes.
 
 This is normal behavior.
 
@@ -455,7 +507,7 @@ Observe → @ObservedObject
 ### Answer:
 Because you used @ObservedObject instead of @StateObject.
 
-@ObservedObject does not preserve instance across view reloads.
+@ObservedObject does not preserve the instance across view reloads.
 
 ### Easy Remember:
 Wrong wrapper = New instance created.
@@ -488,7 +540,7 @@ SwiftUI re-renders a view when:
 - @Binding changes
 - Environment value changes
 
-It compares new view with previous one using diffing.
+It compares the new view with the previous one using diffing.
 
 ### Easy Remember:
 State change = UI refresh.
@@ -506,7 +558,7 @@ Using `.id()` changes identity.
 Incorrect identity may cause animation or state issues.
 
 ### Easy Remember:
-Identity controls view lifecycle.
+Identity controls the view lifecycle.
 
 ---
 
@@ -518,7 +570,7 @@ Because items are not uniquely identifiable.
 Each item must conform to:
 - Identifiable
 OR
-- Have unique id
+- Have a unique ID
 
 ### Example:
 ```swift
@@ -528,7 +580,7 @@ ForEach(items, id: \.id) { item in
 ```
 
 ### Easy Remember:
-ForEach needs unique identity.
+ForEach needs a unique identity.
 
 ---
 
@@ -537,7 +589,7 @@ ForEach needs unique identity.
 ### Answer:
 Common reasons:
 - Using VStack instead of LazyVStack
-- Heavy calculations in body
+- Heavy calculations in the body
 - No stable IDs
 - Large images without resizing
 
@@ -556,7 +608,7 @@ Use:
 - Print frame sizes
 
 ### Easy Remember:
-Add border to debug layout.
+Add a border to the debug layout.
 
 ---
 
@@ -564,7 +616,7 @@ Add border to debug layout.
 
 ### Answer:
 Use UIKit when:
-- SwiftUI lacks specific feature
+- SwiftUI lacks a specific feature
 - Need advanced camera, PDF, WebView customization
 - Working with legacy code
 
@@ -579,8 +631,7 @@ UIKit for advanced control.
 ## 36. What is Concurrency in SwiftUI?
 
 ### Answer:
-Concurrency in SwiftUI refers to performing asynchronous tasks  
-without blocking the main UI thread.
+Concurrency in SwiftUI refers to performing asynchronous tasks without blocking the main UI thread.
 
 SwiftUI uses Swift Concurrency features like:
 - async/await
