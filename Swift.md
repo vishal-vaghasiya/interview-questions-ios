@@ -234,8 +234,7 @@ Protocol = Rules that classes must follow.
 
 ### Answer:
 Swift focuses more on protocols than inheritance.  
-Protocols allow multiple types to share behavior  
-without using class inheritance.
+Protocols allow multiple types to share behavior without using class inheritance.
 
 It makes code more flexible and reusable.
 
