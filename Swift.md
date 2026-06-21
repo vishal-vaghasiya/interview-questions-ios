@@ -132,7 +132,7 @@ Inheritance = Child class gets features from parent class.
 
 ### Answer:
 Polymorphism means "many forms".  
-Same method name behaves differently in different classes.
+The same method name behaves differently in different classes.
 
 ### Example:
 ```swift
@@ -158,7 +158,7 @@ Polymorphism = Same method, different behavior.
 
 ### Answer:
 Method overloading means multiple methods with the same name  
-but different parameters in the same class.
+But different parameters in the same class.
 
 ### Example:
 ```swift
@@ -182,7 +182,7 @@ Overloading = Same method name, different parameters.
 
 ### Answer:
 Method overriding means changing the parent class method  
-implementation in the child class using 'override' keyword.
+implementation in the child class using the 'override' keyword.
 
 ### Example:
 ```swift
@@ -265,9 +265,8 @@ Swift prefers Protocol + Extension over heavy inheritance.
 ## 11. What is ARC?
 
 ### Answer:
-ARC (Automatic Reference Counting) automatically manages memory in Swift.  
-It keeps track of how many strong references point to a class object.  
-When reference count becomes 0, the object is removed from memory.
+ARC (Automatic Reference Counting) is Swift’s memory management system that automatically tracks and manages the memory of class objects.
+It counts strong references to an object and removes the object from memory when the count becomes zero.
 
 ### Example:
 ```swift
@@ -298,7 +297,7 @@ var person: Person? = Person(name: "Vishal")
 ```
 
 ### Easy Remember:
-Strong = Keep object alive.
+Strong = Keep the object alive.
 
 ---
 
@@ -306,8 +305,7 @@ Strong = Keep object alive.
 
 ### Answer:
 Weak reference does NOT increase reference count.  
-It is always optional and automatically becomes nil  
-when the object is removed from memory.
+It is always optional and automatically becomes nil when the object is removed from memory.
 
 Used mostly in delegate patterns.
 
@@ -319,16 +317,15 @@ class Car {
 ```
 
 ### Easy Remember:
-Weak = Does not keep object alive.
+Weak = Does not keep the object alive.
 
 ---
 
-## 14. What is Unowned Reference?
+## 14. What is an Unowned Reference?
 
 ### Answer:
-Unowned reference does not increase reference count.  
-It is non-optional and should be used when  
-the object will never become nil during lifetime.
+An unowned reference does not increase the reference count.  
+It is non-optional and should be used when the object will never become nil during its lifetime.
 
 ### Example:
 ```swift
@@ -349,9 +346,9 @@ Unowned = No strong hold, but not optional.
 
 ### Answer:
 Retain means increasing the reference count of a class object.  
-When a strong reference is created, retain count increases.
+When a strong reference is created, the retain count increases.
 
-ARC handles retain automatically.
+ARC handles retention automatically.
 
 ### Easy Remember:
 Retain = Increase reference count.
@@ -361,7 +358,7 @@ Retain = Increase reference count.
 ## 16. What is Copy?
 
 ### Answer:
-Copy creates a new instance with same value.  
+Copy creates a new instance with the same value.  
 Structs automatically create copies because they are value types.
 
 ### Example:
@@ -383,8 +380,7 @@ Copy = New memory, separate value.
 ## 17. What is Retain Cycle?
 
 ### Answer:
-Retain cycle happens when two class objects  
-hold strong references to each other.  
+Retain cycle happens when two class objects hold strong references to each other.  
 Because of this, ARC cannot remove them from memory.
 
 ### Example:
@@ -403,13 +399,12 @@ Retain Cycle = Strong reference loop.
 
 ---
 
-## 18. How to Avoid Retain Cycle?
+## 18. How to Avoid the Retention Cycle?
 
 ### Answer:
-Use weak or unowned reference  
-to break the strong reference cycle.
+Use a weak or unowned reference to break the strong reference cycle.
 
-Mostly used in delegate and closure.
+Mostly used in delegates and closures.
 
 ### Example:
 ```swift
@@ -419,7 +414,7 @@ class B {
 ```
 
 ### Easy Remember:
-Use weak/unowned to break cycle.
+Use weak/unowned to break the cycle.
 
 ---
 
@@ -428,7 +423,7 @@ Use weak/unowned to break cycle.
 ### Answer:
 Swift uses ARC for class types.  
 Structs and enums are value types and are typically stored on the stack.  
-Memory is automatically released when reference count becomes zero.
+Memory is automatically released when the reference count becomes zero.
 
 ### Easy Remember:
 Class → ARC  
@@ -440,14 +435,21 @@ Struct → Stack memory
 
 ### Answer:
 Structs are value types.  
-They create a copy when assigned to another variable.  
-They do not use ARC.
+When you create or pass a struct, Swift creates a separate copy of the data (value copy). Struct memory is usually managed on the stack and cleaned automatically when it goes out of scope.
 
 ### Example:
 ```swift
-struct CarModel {
+struct User {
     var name: String
 }
+
+var user1 = User(name: "Vishal")
+var user2 = user1   // Copy created
+
+user2.name = "Rahul"
+
+print(user1.name) // Vishal
+print(user2.name) // Rahul
 ```
 
 ### Easy Remember:
@@ -465,7 +467,7 @@ Struct = Copy, no retain cycle.
 Value types store their own copy of data.  
 When assigned to another variable, a new copy is created.
 
-Struct, Enum and Tuple are value types.
+Struct, Enum, and Tuple are value types.
 
 ### Example:
 ```swift
@@ -487,7 +489,7 @@ Value Type = Copy created.
 
 ### Answer:
 Reference types share the same memory location.  
-When assigned to another variable, both point to same object.
+When assigned to another variable, both point to the same object.
 
 Class is a reference type.
 
@@ -509,8 +511,8 @@ Reference Type = Shared memory.
 ## 23. What is a Stored Property?
 
 ### Answer:
-Stored property stores a value in memory.  
-It is defined inside class or struct.
+A stored property stores a value in memory.  
+It is defined inside a class or struct.
 
 ### Example:
 ```swift
@@ -527,8 +529,8 @@ Stored Property = Stores value.
 ## 24. What is a Computed Property?
 
 ### Answer:
-Computed property does not store value.  
-It calculates value every time it is accessed.
+A computed property does not store a value.  
+It calculates the value every time it is accessed.
 
 ### Example:
 ```swift
@@ -559,7 +561,7 @@ Computed = Calculated property.
 
 ### Answer:
 Lazy property is initialized only when it is first used.  
-Declared using `lazy` keyword.
+Declared using the `lazy` keyword.
 
 ### Example:
 ```swift
@@ -617,7 +619,7 @@ struct Capitalized {
 ```
 
 ### Easy Remember:
-Wrapper = Add extra behavior to property.
+Wrapper = Add extra behavior to the property.
 
 ---
 
@@ -651,7 +653,7 @@ Optional Binding = Safe unwrapping.
 ## 30. What is if let?
 
 ### Answer:
-`if let` unwraps optional inside an if block.
+`if let` unwraps an optional inside an if block.
 
 ### Example:
 ```swift
@@ -686,10 +688,10 @@ guard let = Exit early if nil.
 
 ---
 
-## 32. What is Tuple?
+## 32. What is a Tuple?
 
 ### Answer:
-Tuple groups multiple values into one.  
+A tuple groups multiple values into one.  
 It can store different data types.
 
 ### Example:
@@ -705,7 +707,7 @@ Tuple = Multiple values in one.
 ## 33. What is defer?
 
 ### Answer:
-`defer` executes code just before scope ends.  
+`defer` executes code just before the scope ends.  
 Used for cleanup tasks.
 
 ### Example:
@@ -717,15 +719,15 @@ func test() {
 ```
 
 ### Easy Remember:
-defer = Run at end.
+defer = Run at the end.
 
 ---
 
-## 34. What is Inout Parameter?
+## 34. What is an Inout Parameter?
 
 ### Answer:
 `inout` allows a function to modify the original value.  
-Use `&` when passing parameter.
+Use `&` when passing a parameter.
 
 ### Example:
 ```swift
@@ -752,7 +754,7 @@ inout = Modify original value.
 
 ---
 
-## 35. What is Generics?
+## 35. What are Generics?
 
 ### Answer:
 Generics allow writing flexible and reusable code  
@@ -790,8 +792,7 @@ Generics = Reusable for any type.
 ## 36. What is Opaque Type?
 
 ### Answer:
-Opaque type hides the exact return type  
-using `some` keyword.
+Opaque type hides the exact return type using the `some` keyword.
 
 ### Example:
 ```swift
@@ -822,11 +823,8 @@ Opaque = Hide real return type.
 ## 37. What is Closure?
 
 ### Answer:
-Closure is a self-contained block of code  
-that can be passed and used in your code.
-
-Closures can capture and store references  
-to variables from surrounding context.
+Closure is a self-contained block of code that can be passed and used in your code.
+Closures can capture and store references to variables from the surrounding context.
 
 ### Example:
 ```swift
@@ -838,15 +836,14 @@ greet("Vishal")
 ```
 
 ### Easy Remember:
-Closure = Function without name.
+Closure = Function without a name.
 
 ---
 
-## 38. What is map?
+## 38. What is a map?
 
 ### Answer:
-`map` transforms each element in a collection  
-and returns a new array.
+`map` transforms each element in a collection and returns a new array.
 
 ### Example:
 ```swift
@@ -862,8 +859,7 @@ map = Transform each value.
 ## 39. What is compactMap?
 
 ### Answer:
-`compactMap` removes nil values  
-and unwraps optionals.
+`compactMap` removes nil values and unwraps optionals.
 
 ### Example:
 ```swift
@@ -879,13 +875,15 @@ compactMap = Remove nil + unwrap.
 ## 40. What is flatMap?
 
 ### Answer:
-`flatMap` flattens nested collections  
-into a single array.
+`flatMap` flattens nested collections into a single array.
 
 ### Example:
 ```swift
 let array = [[1, 2], [3, 4]]
 let flat = array.flatMap { $0 }
+print(flatArray)
+Output: [1, 2, 3, 4, 5, 6]
+
 ```
 
 ### Easy Remember:
@@ -893,11 +891,10 @@ flatMap = Flatten nested array.
 
 ---
 
-## 41. What is filter?
+## 41. What is a filter?
 
 ### Answer:
-`filter` returns elements  
-that match a condition.
+`filter` returns elements that match a condition.
 
 ### Example:
 ```swift
@@ -913,8 +910,7 @@ filter = Keep matching values.
 ## 42. What is reduce?
 
 ### Answer:
-`reduce` combines all values  
-into a single result.
+`reduce` combines all values into a single result.
 
 ### Example:
 ```swift
@@ -934,10 +930,30 @@ reduce = Combine into one value.
 ## 43. What is Concurrency?
 
 ### Answer:
-Concurrency means performing multiple tasks  
-at the same time or overlapping time.
+Concurrency means performing multiple tasks at the same time or overlapping in time.
 
 It helps improve app performance and responsiveness.
+
+### Example:
+```swift
+func fetchUserData() async {
+    print("Start API call")
+
+    // Background task
+    let data = await getUser()
+
+    print(data)
+}
+
+func getUser() async -> String {
+    return "User Data Loaded"
+}
+
+Task {
+    await fetchUserData()
+}
+### Example:
+```
 
 ### Easy Remember:
 Concurrency = Multiple tasks together.
@@ -950,11 +966,11 @@ Concurrency = Multiple tasks together.
 
 **Synchronous:**  
 Tasks execute one after another.  
-Next task waits until previous task finishes.
+Next task waits until the previous task finishes.
 
 **Asynchronous:**  
-Task runs in background.  
-Program does not wait and continues execution.
+Task runs in the background.  
+The program does not wait and continues execution.
 
 ### Example:
 ```swift
@@ -972,11 +988,9 @@ Async = Don’t wait
 ## 45. What is GCD?
 
 ### Answer:
-GCD (Grand Central Dispatch) is a low-level API  
-used to manage concurrent tasks.
+GCD (Grand Central Dispatch) is a low-level API used to manage concurrent tasks.
 
-It uses DispatchQueue to run tasks  
-on main or background threads.
+It uses DispatchQueue to run tasks on main or background threads.
 
 ### Example:
 ```swift
@@ -1010,13 +1024,12 @@ async/await = Clean async code.
 
 ---
 
-## 47. What is Actor?
+## 47. What is an actor?
 
 ### Answer:
-Actor is a reference type  
-that protects its data from data races.
+Actor is a reference type that protects its data from data races.
 
-Only one task can access actor’s data at a time.
+Only one task can access the actor’s data at a time.
 
 ### Example:
 ```swift
@@ -1037,8 +1050,7 @@ Actor = Safe shared data.
 ## 48. What is @MainActor?
 
 ### Answer:
-`@MainActor` ensures code runs  
-on the main thread.
+`@MainActor` ensures code runs on the main thread.
 
 Used when updating UI.
 
@@ -1066,17 +1078,14 @@ Swift Concurrency includes:
 - Actor
 - Structured concurrency
 
-It provides safe and modern way  
-to write asynchronous code.
+It provides a safe and modern way to write asynchronous code.
 
 ### Easy Remember:
 Swift Concurrency = Modern async system.
 
 ---
 
-
-
-## 50. What is Task in Swift Concurrency?
+## 50. What is a task in Swift Concurrency?
 
 ### Answer:
 `Task` creates a new asynchronous unit of work.
@@ -1116,16 +1125,42 @@ async let = Parallel async tasks.
 ## 52. What is TaskGroup?
 
 ### Answer:
-TaskGroup allows creating and managing
-multiple child tasks dynamically.
+TaskGroup allows creating and managing Multiple child tasks dynamically.
 
 Used in structured concurrency.
 
 ### Example:
 ```swift
-await withTaskGroup(of: Int.self) { group in
-    group.addTask { return 1 }
+func downloadImage(_ name: String) async -> String {
+    return "\(name) downloaded"
 }
+
+func downloadAllImages() async {
+    await withTaskGroup(of: String.self) { group in
+        group.addTask {
+            await downloadImage("Image 1")
+        }
+        group.addTask {
+            await downloadImage("Image 2")
+        }
+        group.addTask {
+            await downloadImage("Image 3")
+        }
+        for await result in group {
+            print(result)
+        }
+    }
+}
+
+Task {
+    await downloadAllImages()
+}
+
+Output:
+Image 1 downloaded
+Image 2 downloaded
+Image 3 downloaded
+
 ```
 
 ### Easy Remember:
@@ -1136,8 +1171,7 @@ TaskGroup = Manage multiple async tasks.
 ## 53. What is Continuation?
 
 ### Answer:
-Continuation is used to convert
-callback-based code into async/await.
+Continuation is used to convert callback-based code into async/await.
 
 ### Example:
 ```swift
@@ -1186,16 +1220,6 @@ MVC stands for Model-View-Controller.
 
 It is the default architecture used in UIKit.
 
-### Example:
-```swift
-class User {
-    var name: String
-    init(name: String) {
-        self.name = name
-    }
-}
-```
-
 ### Easy Remember:
 MVC = Separate Data, UI, and Logic.
 
@@ -1213,13 +1237,6 @@ MVVM stands for Model-View-ViewModel.
 View communicates with ViewModel instead of directly with Model.
 
 Mostly used in SwiftUI.
-
-### Example:
-```swift
-class UserViewModel {
-    var name: String = "Vishal"
-}
-```
 
 ### Easy Remember:
 MVVM = View talks to ViewModel.
@@ -1261,11 +1278,10 @@ VIPER = Highly structured & modular architecture.
 
 ---
 
-## 59. What is Decorator Design Pattern?
+## 59. What is the Decorator Design Pattern?
 
 ### Answer:
-Decorator pattern adds new behavior  
-to an existing object without modifying its original code.
+Decorator pattern adds new behavior to an existing object without modifying its original code.
 
 It wraps the original object.
 
@@ -1295,15 +1311,14 @@ class MilkDecorator: Coffee {
 ```
 
 ### Easy Remember:
-Decorator = Add functionality without changing original class.
+Decorator = Add functionality without changing the original class.
 
 ---
 
 ## 60. What is Singleton?
 
 ### Answer:
-Singleton ensures only one instance  
-of a class exists throughout the app.
+Singleton is a design pattern that allows only one shared instance of a class throughout the entire application.
 
 Used for shared managers like NetworkManager.
 
@@ -1313,6 +1328,10 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private init() { }
+
+    func fetchData() {
+        print("API Call")
+    }
 }
 ```
 
@@ -1321,14 +1340,12 @@ Singleton = Only one shared instance.
 
 ---
 
-## 61. What is Coordinator Pattern?
+## 61. What is the Coordinator Pattern?
 
 ### Answer:
-Coordinator Pattern is an architectural pattern  
-used to manage navigation logic outside of ViewControllers.
+The Coordinator Pattern is an architectural pattern  used to manage navigation logic outside of ViewControllers.
 
-Instead of handling navigation inside ViewController,  
-a separate Coordinator object controls screen flow.
+Instead of handling navigation inside the ViewController, a separate Coordinator object controls screen flow.
 
 It improves:
 - Separation of concerns
@@ -1358,7 +1375,7 @@ class AppCoordinator: Coordinator {
 ```
 
 ### Easy Remember:
-Coordinator = Handles navigation outside ViewController.
+Coordinator = Handles navigation outside the ViewController.
 
 ---
 # Section 7 – UIKit & App Lifecycle
@@ -1369,7 +1386,7 @@ Coordinator = Handles navigation outside ViewController.
 
 ### Answer:
 The iOS Application Lifecycle describes  
-the different states an app goes through  
+The different states an app goes through  
 from launch to termination.
 
 It is managed by `UIApplicationDelegate`.
@@ -1402,7 +1419,7 @@ There are 5 app states:
    → App is running in foreground and receiving events.
 
 4. **Background**
-   → App runs in background executing code.
+   → App runs in the background, executing code.
 
 5. **Suspended**
    → App is in memory but not executing code.
@@ -1414,7 +1431,7 @@ NR → I → A → B → S
 
 ---
 
-## 64. What is UIViewController Lifecycle?
+## 64. What is the UIViewController Lifecycle?
 
 ### Answer:
 UIViewController lifecycle methods are called  
@@ -1423,27 +1440,19 @@ during view loading and appearance.
 Main methods:
 
 1. `viewDidLoad()`  
-   → Called once when view is loaded into memory.
+   → Called once when the view is loaded into memory.
 
 2. `viewWillAppear()`  
-   → Called before view appears.
+   → Called before the view appears.
 
 3. `viewDidAppear()`  
-   → Called after view appears.
+   → Called after the view appears.
 
 4. `viewWillDisappear()`  
-   → Called before view disappears.
+   → Called before the view disappears.
 
 5. `viewDidDisappear()`  
-   → Called after view disappears.
-
-### Example:
-```swift
-override func viewDidLoad() {
-    super.viewDidLoad()
-    print("View Loaded")
-}
-```
+   → Called after the view disappears.
 
 ### Easy Remember:
 Load → Will Appear → Did Appear → Will Disappear → Did Disappear
@@ -1453,9 +1462,7 @@ Load → Will Appear → Did Appear → Will Disappear → Did Disappear
 ## 65. What is Delegate?
 
 ### Answer:
-Delegate is a design pattern  
-used to pass data or events  
-from one object to another.
+A delegate is a design pattern used to pass data or events from one object to another.
 
 It uses protocols for communication  
 and helps achieve loose coupling between objects.
@@ -1475,9 +1482,7 @@ Delegate = One object informs another.
 ## 66. What is Delegation?
 
 ### Answer:
-Delegation is the process  
-where one object assigns responsibility  
-to another object using a protocol.
+Delegation is the process by which one object assigns responsibility to another object using a protocol.
 
 It is widely used in UIKit components like:
 
@@ -1486,7 +1491,7 @@ It is widely used in UIKit components like:
 - UITextFieldDelegate  
 
 ### Easy Remember:
-Delegation = Assign task using protocol.
+Delegation = Assign a task using protocol.
 
 ---
 
@@ -1499,7 +1504,7 @@ allows observing changes to a property.
 When the value changes,  
 observers are automatically notified.
 
-It is mainly used with Objective-C compatible properties.
+It is mainly used with Objective-C-compatible properties.
 
 ### Easy Remember:
 KVO = Observe property changes automatically.
@@ -1509,9 +1514,7 @@ KVO = Observe property changes automatically.
 ## 68. What is NotificationCenter?
 
 ### Answer:
-NotificationCenter is used  
-to broadcast information  
-to multiple observers.
+NotificationCenter is used to broadcast information to multiple observers.
 
 It follows the publish-subscribe pattern.
 
@@ -1533,12 +1536,10 @@ NotificationCenter = Broadcast message to many listeners.
 ## 69. What is CoreData?
 
 ### Answer:
-CoreData is a framework  
-used to store and manage local data  
-in iOS applications.
+CoreData is a framework used to store and manage local data in iOS applications.
 
 It is not just a database —  
-it is an object graph and persistence framework.
+It is an object graph and persistence framework.
 
 Features:
 - Data persistence
@@ -1605,15 +1606,14 @@ SwiftData = Modern & Simple
 ## 72. What is Code Signing?
 
 ### Answer:
-Code Signing ensures that the app is created by a trusted developer  
-and has not been modified.
+Code Signing ensures that the app is created by a trusted developer and has not been modified.
 
 It uses:
 - Certificate
 - Provisioning Profile
 - Apple Developer Account
 
-Without code signing, app cannot run on real device.
+Without code signing, an app cannot run on a real device.
 
 ### Easy Remember:
 Code Signing = Verify developer + secure app.
@@ -1623,8 +1623,7 @@ Code Signing = Verify developer + secure app.
 ## 73. What is an Apple Developer Account?
 
 ### Answer:
-Apple Developer Account allows developers  
-to build, test and publish apps on App Store.
+An Apple Developer Account allows developers to build, test, and publish apps on the App Store.
 
 Cost: $99 per year.
 
@@ -1642,9 +1641,7 @@ Developer Account = Publish apps on App Store.
 ## 74. What is an Enterprise Account?
 
 ### Answer:
-Enterprise Account is used by companies  
-to distribute internal apps to employees  
-without publishing on App Store.
+Enterprise Account is used by companies to distribute internal apps to employees without publishing on App Store.
 
 Cost: $299 per year.
 
@@ -1658,11 +1655,10 @@ Enterprise = Internal company apps only.
 ## 75. What is TestFlight?
 
 ### Answer:
-TestFlight is Apple’s official tool  
-for beta testing iOS apps.
+TestFlight is Apple’s official tool for beta testing iOS apps.
 
 Developers can invite testers  
-before releasing app to App Store.
+before releasing the app to the App Store.
 
 ### Easy Remember:
 TestFlight = Beta testing platform.
@@ -1702,7 +1698,7 @@ Consumable, Non-Consumable, Subscriptions (Auto + Non-auto).
 ## 78. How to Upload an App to the App Store?
 
 ### Answer:
-Steps to upload app:
+Steps to upload the app:
 
 1. Create App ID & Certificates
 2. Archive app in Xcode
@@ -1711,7 +1707,7 @@ Steps to upload app:
 5. Add metadata (screenshots, description)
 6. Submit for review
 
-After approval, app becomes live on App Store.
+After approval, the app becomes live on the App Store.
 
 ### Easy Remember:
 Archive → Upload → Submit → Review → Live
@@ -1722,15 +1718,12 @@ Archive → Upload → Submit → Review → Live
 
 ---
 
-## 79. What is cherry-pick in Git?
+## 79. What is cherry-picking in Git?
 
 ### Answer:
-`git cherry-pick` is a Git command  
-used to apply a specific commit  
-from one branch into another branch.
+`git cherry-pick` is a Git command used to apply a specific commit from one branch into another branch.
 
-It copies only the selected commit  
-instead of merging the entire branch.
+It copies only the selected commit instead of merging the entire branch.
 
 ### Example:
 ```bash
@@ -1766,8 +1759,8 @@ SOLID = Rules for clean architecture.
 ### Answer:
 
 - `try` → Used with do-catch to handle errors.
-- `try?` → Returns optional. If error occurs, returns nil.
-- `try!` → Force try. Crashes if error occurs.
+- `try?` → Returns optional. If an error occurs, it returns nil.
+- `try!` → Force try. Crashes if an error occurs.
 
 ### Example:
 ```swift
@@ -1791,11 +1784,9 @@ try! = crash if fails
 ## 82. What is Combine?
 
 ### Answer:
-Combine is a framework by Apple  
-used for reactive programming.
+Combine is a framework by Apple used for reactive programming.
 
-It allows handling asynchronous events  
-using publishers and subscribers.
+It allows handling asynchronous events using publishers and subscribers.
 
 Used heavily in SwiftUI and MVVM.
 
@@ -1844,8 +1835,7 @@ Name updated to: Vishal
 ## 83. What is Data Binding?
 
 ### Answer:
-Data Binding connects UI with data source  
-so when data changes, UI updates automatically.
+Data Binding connects the UI with the data source, so when data changes, the UI updates automatically.
 
 Used in:
 - MVVM pattern
@@ -1896,9 +1886,7 @@ Swift = Safe + Fast + Modern.
 ## 86. What is an Extension?
 
 ### Answer:
-Extension allows adding new functionality  
-to an existing class, struct, enum, or protocol  
-without modifying the original source code.
+Extension allows adding new functionality to an existing class, struct, enum, or protocol without modifying the source code.
 
 Used to:
 - Add methods
@@ -1915,7 +1903,7 @@ extension String {
 ```
 
 ### Easy Remember:
-Extension = Add new features without changing original code.
+Extension = Add new features without changing the original code.
 
 ---
 
@@ -1923,8 +1911,7 @@ Extension = Add new features without changing original code.
 ## 87. What is Enum?
 
 ### Answer:
-Enum (Enumeration) is a type  
-that defines a group of related values.
+An enum (Enumeration) is a type that defines a group of related values.
 
 Enums in Swift are powerful and can:
 - Have associated values
@@ -1948,11 +1935,11 @@ Enum = Group of related cases.
 
 ### 🔐 Security Topics
 
-## 88. What is Keychain and why is it used?
+## 88. What is Keychain, and why is it used?
 
 ### Answer:
 Keychain is a secure storage system provided by iOS  
-to store sensitive information in encrypted form.
+to store sensitive information in an encrypted form.
 
 It is mainly used to store:
 - Passwords
@@ -2079,7 +2066,7 @@ UserDefaults.standard.set(true, forKey: "isLoggedIn")
 
 ---
 
-## 90. Can I store user password in iOS?
+## 90. Can I store a user's password in iOS?
 
 ### Answer:
 Yes, but only in **Keychain**.
@@ -2092,21 +2079,21 @@ and should NEVER be stored in:
 - CoreData
 - Local files
 
-The correct and secure place to store user password  
+The correct and secure place to store users' passwords  
 is the iOS **Keychain**, because:
 
 - It is encrypted
-- Managed by iOS security system
+- Managed by the iOS security system
 - Can be protected with Face ID / Touch ID
 - More secure than normal storage
 
 ### Important Best Practice:
 In real-world apps, we usually:
 - Do NOT store raw password
-- Store authentication token instead
+- Store the authentication token instead
 
-Password should only be stored  
-if absolutely required.
+The password should only be stored  
+If absolutely required.
 
 ### Example:
 ```swift
@@ -2123,8 +2110,7 @@ Never UserDefaults.
 ## 91. What type of data is stored in Info.plist?
 
 ### Answer:
-Info.plist (Information Property List) stores  
-app configuration and metadata required by iOS.
+Info.plist (Information Property List) stores app configuration and metadata required by iOS.
 
 It is NOT used to store sensitive data.
 
@@ -2163,7 +2149,7 @@ Do NOT store:
 
 ### Answer:
 API keys should NEVER be hardcoded directly inside the app  
-because the app bundle can be reverse engineered.
+because the app bundle can be reverse-engineered.
 
 Not secure places:
 - Hardcoded strings
@@ -2172,8 +2158,8 @@ Not secure places:
 - Public GitHub repositories
 
 ### Best Practices:
-- Store sensitive keys on server
-- Call APIs through backend
+- Store sensitive keys on the server
+- Call APIs through the backend
 - Use short-lived tokens instead of static API keys
 - Use .xcconfig for environment separation (not for strong security)
 
@@ -2198,8 +2184,8 @@ Never trust client-side storage for secret API keys.
 By default, Keychain data survives app uninstall.
 
 This means:
-- If user deletes app
-- Reinstalls app
+- If the user deletes the app
+- Reinstalls the app
 - Keychain data may still exist
 
 This is useful for:
@@ -2224,7 +2210,7 @@ To protect sensitive data:
 - Use HTTPS (never HTTP)
 - Use Keychain for tokens and passwords
 - Avoid logging sensitive information
-- Avoid storing secrets in app bundle
+- Avoid storing secrets in the app bundle
 - Use SSL Pinning (advanced)
 - Use server-side validation
 
@@ -2246,7 +2232,7 @@ Protect data at:
 ## 95. What is Data Protection in iOS?
 
 ### Answer:
-Data Protection encrypts files stored on device  
+Data Protection encrypts files stored on the device  
 based on the device lock state.
 
 iOS provides file protection levels such as:
@@ -2255,7 +2241,7 @@ iOS provides file protection levels such as:
 - NSFileProtectionCompleteUntilFirstUserAuthentication
 - NSFileProtectionNone
 
-These control when files are accessible.
+These controls determine when files are accessible.
 
 ### Example:
 ```swift
@@ -2271,11 +2257,10 @@ Data Protection = File encryption based on device lock state.
 ---
 ### 💾 Storage Topics
 
-## 96. What is Persistent Storage in iOS and what are its types?
+## 96. What is Persistent Storage in iOS, and what are its types?
 
 ### Answer:
-Persistent storage refers to saving data in a way  
-that it remains available even after:
+Persistent storage refers to saving data in a way that it remains available even after:
 
 - The app is closed
 - The device is restarted
@@ -2323,7 +2308,7 @@ let name = UserDefaults.standard.string(forKey: "username")
 
 ### 🚀 Advanced Swift & Concurrency
 
-## 97. What is the difference between Struct and Class?
+## 97. What is the difference between a struct and a class?
 
 ### Answer:
 
@@ -2444,11 +2429,11 @@ COW = Copy only when changed.
 
 ---
 
-## 102. What is Equatable and Hashable?
+## 102. What are Equatable and Hashable?
 
 ### Answer:
 Equatable allows comparing two instances.  
-Hashable allows using objects in Set or Dictionary.
+Hashable allows using objects in a Set or a Dictionary.
 
 ### Example:
 ```swift
@@ -2507,8 +2492,7 @@ Autoreleasepool = Release temp memory early.
 ## 105. What is Codable?
 
 ### Answer:
-Codable is a protocol used  
-to encode and decode JSON data.
+Codable is a protocol used to encode and decode JSON data.
 
 It combines:
 - Encodable
